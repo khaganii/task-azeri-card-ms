@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  user-ms:
+    image: user-ms-image
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+
+  product-ms:
+    image: product-ms-image
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+
+  payment-ms:
+    image: payment-ms-image
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+
+  card-ms:
+    image: card-ms-image
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=azericard_ms_task'
+      - 'MYSQL_PASSWORD=azericard'
+      - 'MYSQL_ROOT_PASSWORD=azericard'
+      - 'MYSQL_USER=azericard'
+    ports:
+      - '3306'
